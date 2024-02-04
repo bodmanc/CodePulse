@@ -3,6 +3,6 @@
     public class CreateCategoryRequestDto
     {
         public string Name { get; set; }
-        public string UrlHandle { get; set; }
+        public string urlHandle { get; set; }
     }
 }

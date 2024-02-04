@@ -19,7 +19,7 @@ namespace CodePulse.API.Controllers
         {
             _categoryRepository = categoryRepository;
         }
-        // 
+        // Post
         [HttpPost]
         public async Task<IActionResult> CreateCategory(CreateCategoryRequestDto request)
         {
@@ -115,6 +115,29 @@ namespace CodePulse.API.Controllers
             };
 
             return Ok(response);
+        }
+
+        // Delete  https://localhost:7061/api/categories/{id}
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        
+        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id) 
+        {
+          var category =  await _categoryRepository.DeleteAsync(id);
+            if (category is null)
+            {
+                return NotFound();
+            }
+            // convert domain to dto
+            var response = new CategoryDto
+            {
+                Id = category.Id,
+                Name = category.Name,
+                urlHandle = category.UrlHandle
+            };
+
+            return Ok(response);
+
         }
     }
 }

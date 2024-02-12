@@ -20,6 +20,9 @@
           <th>
             isVisible?
           </th>
+          <th>
+            Categories
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -32,6 +35,11 @@
           </td>
           <td>
             {{blogPost.isVisible}}
+          </td>
+          <td>
+            <span *ngFor="let category of blogPost.categories">
+            <span class="badge bg-secondary me-2">{{category.name}}</span>
+            </span>
           </td>
         </tr>
       </tbody>
